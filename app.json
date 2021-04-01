@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "TaxiCALL",
+    "slug": "TaxiCall",
+    "description": "React Native Recipes App Demo. Download source code for free at https://www.instamobile.io . You can also check out the Swift version at https://www.iosapptemplates.com and the Kotlin version at https://www.instakotlin.com .",
+    "privacy": "public",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "backgroundColor": "#ffffff",
+      "image": "./Components/screens/Images/icon.png",
+      "resizeMode": "cover"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.taxicall.component",
+      "versionCode": 1,
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyD3D4i2eq-tXo7hgdU9VqzonJyVpg-CdUQ"
+        }
+      }
+    }
+  }
+}
