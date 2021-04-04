@@ -14,6 +14,7 @@ import RiderHome from './src/screens/rider/RiderHome';
 import DriverRegLog from "./src/screens/driver/DriverRegLog";
 import DriverLogin from "./src/screens/driver/DriverLogin";
 import DriverRegister from "./src/screens/driver/DriverRegister";
+import DriverHome from './src/screens/driver/DriverHome';
 
 class App extends React.Component {
   render(){
@@ -44,12 +45,17 @@ const AuthStackRider = createStackNavigator({ Rider: RiderHome }, {
       headerVisible: false,
     },
   },);
-// const AuthStackDriver = createStackNavigator({ Driver: DriverHome });
+const AuthStackDriver = createStackNavigator({ Driver: DriverHome }, { 
+	headerMode: 'none',
+	navigationOptions: {
+	header: null,
+	headerVisible: false,
+	},});
 const switchNavigator = createSwitchNavigator(
 	{
 		AuthLoading: AuthLoadingScreen,
 		App1: AuthStackRider,
-		// App2: AuthStackDriver,
+		App2: AuthStackDriver,
 		Auth: AuthStack
 	},
 	{

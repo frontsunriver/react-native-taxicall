@@ -157,6 +157,7 @@ export default class DriverLogin extends React.Component {
     //       this.setState({ color: '#ffffff' });
     //     },
     //   );
+    this.props.navigation.navigate('App2');
   };
 }
 

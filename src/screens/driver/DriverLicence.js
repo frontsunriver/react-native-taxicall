@@ -26,8 +26,8 @@ import {
   CardItem,
 } from 'native-base';
 import Toast from 'react-native-simple-toast';
-import * as firebase from 'firebase';
-import ApiKeys from '../constants/ApiKeys';
+// import * as firebase from 'firebase';
+// import ApiKeys from '../constants/ApiKeys';
 export default class DriverLicence extends React.Component {
   static navigationOptions = {
     drawerIcon: ({ tintColor }) => (
@@ -45,14 +45,14 @@ export default class DriverLicence extends React.Component {
       date_issued: '',
       date_expiry: '',
     };
-    if (!firebase.apps.length) {
-      firebase.initializeApp(ApiKeys.FirebaseConfig);
-    }
+    // if (!firebase.apps.length) {
+    //   firebase.initializeApp(ApiKeys.FirebaseConfig);
+    // }
   }
   render() {
     return (
       <Container style={styles.wrapper}>
-        <Header style={{ backgroundColor: '#42A5F5', height: 75 }}>
+        <Header style={{ backgroundColor: '#42A5F5', height: 60 }}>
           <Left>
             <TouchableHighlight
               style={{
@@ -61,7 +61,6 @@ export default class DriverLicence extends React.Component {
                 borderRadius: 50,
                 alignItems: 'center',
                 justifyContent: 'center',
-                marginTop: 20,
               }}
               onPress={() => this.props.navigation.navigate('Home')}
             >
@@ -74,7 +73,6 @@ export default class DriverLicence extends React.Component {
                 color: '#ffffff',
                 fontSize: 20,
                 fontWeight: 'bold',
-                marginTop: 20,
               }}
             >
               Driver Licence
@@ -138,23 +136,23 @@ export default class DriverLicence extends React.Component {
   _addDriverLicence = async () => {
     DriverID = firebase.auth().currentUser.uid;
     if (DriverID) {
-      firebase
-        .database()
-        .ref(`Drivers/${DriverID}/DriverLicence/`)
-        .set({
-          licence_number: this.slicence_number,
-          vehicle_type: this.state.vehicle_type,
-          date_issued: this.state.date_issued,
-          date_expiry: this.state.date_expiry,
-        })
-        .then(
-          () => {
-            Toast.show('licence updated successfully', Toast.SHORT);
-          },
-          error => {
-            Toast.show(error.message, Toast.SHORT);
-          },
-        );
+      // firebase
+      //   .database()
+      //   .ref(`Drivers/${DriverID}/DriverLicence/`)
+      //   .set({
+      //     licence_number: this.slicence_number,
+      //     vehicle_type: this.state.vehicle_type,
+      //     date_issued: this.state.date_issued,
+      //     date_expiry: this.state.date_expiry,
+      //   })
+      //   .then(
+      //     () => {
+      //       Toast.show('licence updated successfully', Toast.SHORT);
+      //     },
+      //     error => {
+      //       Toast.show(error.message, Toast.SHORT);
+      //     },
+      //   );
     }
   };
 }

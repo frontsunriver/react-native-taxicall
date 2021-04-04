@@ -32,7 +32,7 @@ export default class DriverRatings extends React.Component {
   render() {
     return (
       <Container style={{ flex: 1 }}>
-        <Header style={{ backgroundColor: '#42A5F5', height: 75 }}>
+        <Header style={{ backgroundColor: '#42A5F5', height: 60 }}>
           <Left>
             <TouchableHighlight
               style={{
@@ -41,7 +41,6 @@ export default class DriverRatings extends React.Component {
                 borderRadius: 50,
                 alignItems: 'center',
                 justifyContent: 'center',
-                marginTop: 20,
               }}
               onPress={() => this.props.navigation.navigate('Home')}
             >
@@ -54,7 +53,6 @@ export default class DriverRatings extends React.Component {
                 color: '#ffffff',
                 fontSize: 20,
                 fontWeight: 'bold',
-                marginTop: 20,
               }}
             >
               Ratings

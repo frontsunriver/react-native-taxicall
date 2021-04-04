@@ -29,8 +29,8 @@ import {
 //import RiderPickUp from './RiderPickUp';
 ///import {createStackNavigator} from 'react-navigation';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-import * as firebase from 'firebase';
-import ApiKeys from '../constants/ApiKeys';
+// import * as firebase from 'firebase';
+// import ApiKeys from '../constants/ApiKeys';
 
 //-----------------------------------------------------------------------------------//
 /*
@@ -88,9 +88,9 @@ export default class DriverHomeContents extends React.Component {
     };
     this.callFunc = this.callFunc.bind(this);
 
-    if (!firebase.apps.length) {
-      firebase.initializeApp(ApiKeys.FirebaseConfig);
-    }
+    // if (!firebase.apps.length) {
+    //   firebase.initializeApp(ApiKeys.FirebaseConfig);
+    // }
   }
   callFunc() {
     if (this.isModalVisible) {
@@ -192,7 +192,7 @@ export default class DriverHomeContents extends React.Component {
   render() {
     return (
       <Container>
-        <Header style={{ backgroundColor: '#42A5F5', height: 75 }}>
+        <Header style={{ backgroundColor: '#42A5F5', height: 60 }}>
           <Left>
             <TouchableHighlight
               style={{
@@ -201,7 +201,6 @@ export default class DriverHomeContents extends React.Component {
                 borderRadius: 50,
                 alignItems: 'center',
                 justifyContent: 'center',
-                marginTop: 20,
               }}
               onPress={() => this.props.navigation.toggleDrawer()}
             >
@@ -214,7 +213,6 @@ export default class DriverHomeContents extends React.Component {
                 color: '#ffffff',
                 fontSize: 20,
                 fontWeight: 'bold',
-                marginTop: 20,
               }}
             >
               Driving
@@ -461,53 +459,53 @@ export default class DriverHomeContents extends React.Component {
 
     this.setState({ isStartTripButtonVisible: false });
     this.setState({ isStopTripButtonVisible: true });
-    AsyncStorage.getItem('driverId')
-      .then(driverID =>
-        //riderId=result,s
+    // AsyncStorage.getItem('driverId')
+    //   .then(driverID =>
+    //     //riderId=result,s
 
-        firebase
-          .database()
-          .ref('Ride_History/' + RiderID + '/')
-          .set({
-            driverID: driverID,
-          })
-          .then(
-            () => {},
-            error => {
-              Toast.show(error.message, Toast.SHORT);
-            },
-          ),
-      )
-      .catch(e => console.log('err', e));
+    //     firebase
+    //       .database()
+    //       .ref('Ride_History/' + RiderID + '/')
+    //       .set({
+    //         driverID: driverID,
+    //       })
+    //       .then(
+    //         () => {},
+    //         error => {
+    //           Toast.show(error.message, Toast.SHORT);
+    //         },
+    //       ),
+    //   )
+    //   .catch(e => console.log('err', e));
 
     //store driver information
-    AsyncStorage.getItem('driverId')
-      .then(driverID =>
-        //riderId=result,
+    // AsyncStorage.getItem('driverId')
+    //   .then(driverID =>
+    //     //riderId=result,
 
-        firebase
-          .database()
-          .ref('Ride_History/' + driverID + '/')
-          .set({
-            riderID: RiderID,
-            riderpickname: RiderPickUpName,
-            riderdropname: RiderDropUpName,
-            riderpickuplatitude: RiderPickUpLatitude,
-            riderpickuplongitude: RiderPickUpLongitude,
-            riderDropofflatitude: RiderDropUpLatitude,
-            riderdropofflongitude: RiderDropUpLongitude,
-          })
-          .then(
-            () => {
-              this.setState({ isModal2Visible: false });
-            },
-            error => {
-              //Toast.show(error.message,Toast.SHORT);
-              console.error('error:' + error);
-            },
-          ),
-      )
-      .catch(e => console.log('err', e));
+    //     firebase
+    //       .database()
+    //       .ref('Ride_History/' + driverID + '/')
+    //       .set({
+    //         riderID: RiderID,
+    //         riderpickname: RiderPickUpName,
+    //         riderdropname: RiderDropUpName,
+    //         riderpickuplatitude: RiderPickUpLatitude,
+    //         riderpickuplongitude: RiderPickUpLongitude,
+    //         riderDropofflatitude: RiderDropUpLatitude,
+    //         riderdropofflongitude: RiderDropUpLongitude,
+    //       })
+    //       .then(
+    //         () => {
+    //           this.setState({ isModal2Visible: false });
+    //         },
+    //         error => {
+    //           //Toast.show(error.message,Toast.SHORT);
+    //           console.error('error:' + error);
+    //         },
+    //       ),
+    //   )
+    //   .catch(e => console.log('err', e));
   };
 
   _DoneTrip = () => {
@@ -537,28 +535,28 @@ export default class DriverHomeContents extends React.Component {
     //var userLongitude=this.state.region.longitude;
     //if(userLatitude>0 && userLongitude>0){
 
-    AsyncStorage.getItem('driverId')
-      .then(result =>
-        firebase
-          .database()
-          .ref(`Drivers/${result}/DriversCurrentLocation/`)
-          .set({
-            latitude: this.state.region.latitude,
-            longitude: this.state.region.longitude,
-          })
-          .then(
-            () => {
-              //firebase.database().ref(`Payments/${RiderID}/PaymentsHistory`);
-              //Toast.show("payments updated successfully",Toast.SHORT);
-              // console.log("latitude:"+this.state.region.latitude +"   longitude:"+this.state.region.longitude);
-            },
-            error => {
-              //Toast.show(error.message,Toast.SHORT);
-              console.log('error with location:' + error);
-            },
-          ),
-      )
-      .catch(e => console.log('err', e));
+    // AsyncStorage.getItem('driverId')
+    //   .then(result =>
+    //     firebase
+    //       .database()
+    //       .ref(`Drivers/${result}/DriversCurrentLocation/`)
+    //       .set({
+    //         latitude: this.state.region.latitude,
+    //         longitude: this.state.region.longitude,
+    //       })
+    //       .then(
+    //         () => {
+    //           //firebase.database().ref(`Payments/${RiderID}/PaymentsHistory`);
+    //           //Toast.show("payments updated successfully",Toast.SHORT);
+    //           // console.log("latitude:"+this.state.region.latitude +"   longitude:"+this.state.region.longitude);
+    //         },
+    //         error => {
+    //           //Toast.show(error.message,Toast.SHORT);
+    //           console.log('error with location:' + error);
+    //         },
+    //       ),
+    //   )
+    //   .catch(e => console.log('err', e));
 
     /*RiderID=firebase.auth().currentUser.uid;
     if(RiderID){
@@ -582,195 +580,195 @@ export default class DriverHomeContents extends React.Component {
   }
 
   _getRiderRequestDetails = () => {
-    AsyncStorage.getItem('driverId')
-      .then(result =>
-        firebase
-          .database()
-          .ref('/Ride_Request/' + result)
-          .once('value')
-          .then(function (snapshot) {
-            if (snapshot.exists()) {
-              RiderID = snapshot.child('riderID').val();
-              RiderPickUpName = snapshot.child('pickUpName').val();
-              RiderDropUpName = snapshot.child('dropOffName').val();
-              RiderPickUpLatitude = snapshot.child('pickupLatitude').val();
-              RiderPickUpLongitude = snapshot.child('pickupLongitude').val();
-              RiderDropUpLatitude = snapshot.child('dropOffLatitude').val();
-              RiderDropUpLongitude = snapshot.child('dropOffLongitude').val();
-            }
-          })
-          .then(
-            () => {
-              console.log('fine' + RiderDropUpName + '' + RiderPickUpName);
-              if (!RiderID == '') {
-                this.setState({ isModalVisible: true });
-              }
+    // AsyncStorage.getItem('driverId')
+    //   .then(result =>
+    //     firebase
+    //       .database()
+    //       .ref('/Ride_Request/' + result)
+    //       .once('value')
+    //       .then(function (snapshot) {
+    //         if (snapshot.exists()) {
+    //           RiderID = snapshot.child('riderID').val();
+    //           RiderPickUpName = snapshot.child('pickUpName').val();
+    //           RiderDropUpName = snapshot.child('dropOffName').val();
+    //           RiderPickUpLatitude = snapshot.child('pickupLatitude').val();
+    //           RiderPickUpLongitude = snapshot.child('pickupLongitude').val();
+    //           RiderDropUpLatitude = snapshot.child('dropOffLatitude').val();
+    //           RiderDropUpLongitude = snapshot.child('dropOffLongitude').val();
+    //         }
+    //       })
+    //       .then(
+    //         () => {
+    //           console.log('fine' + RiderDropUpName + '' + RiderPickUpName);
+    //           if (!RiderID == '') {
+    //             this.setState({ isModalVisible: true });
+    //           }
 
-              firebase
-                .database()
-                .ref('/Riders/' + RiderID + '/Details')
-                .once('value')
-                .then(function (snapshot) {
-                  DriverHomeContents.Firstname = snapshot
-                    .child('firstname')
-                    .val();
-                  DriverHomeContents.Lastname = snapshot
-                    .child('lastname')
-                    .val();
-                })
-                .then(
-                  () => {
-                    //console.log("fine"+Firstname);
-                  },
-                  error => {
-                    // console.error("error"+error);
-                    // console.log("the user id:"+userId);
-                  },
-                );
-            },
-            error => {
-              console.error('error' + error);
-              //console.log("the user id:"+userId);
-            },
-          ),
-      )
-      .catch(e => console.log('err', e));
+    //           firebase
+    //             .database()
+    //             .ref('/Riders/' + RiderID + '/Details')
+    //             .once('value')
+    //             .then(function (snapshot) {
+    //               DriverHomeContents.Firstname = snapshot
+    //                 .child('firstname')
+    //                 .val();
+    //               DriverHomeContents.Lastname = snapshot
+    //                 .child('lastname')
+    //                 .val();
+    //             })
+    //             .then(
+    //               () => {
+    //                 //console.log("fine"+Firstname);
+    //               },
+    //               error => {
+    //                 // console.error("error"+error);
+    //                 // console.log("the user id:"+userId);
+    //               },
+    //             );
+    //         },
+    //         error => {
+    //           console.error('error' + error);
+    //           //console.log("the user id:"+userId);
+    //         },
+    //       ),
+    //   )
+    //   .catch(e => console.log('err', e));
   };
 
   _getRiderAcceptDetails = () => {
-    AsyncStorage.getItem('driverId')
-      .then(result =>
-        firebase
-          .database()
-          .ref('/Ride_Confirm/' + result)
-          .once('value')
-          .then(function (snapshot) {
-            if (snapshot.exists()) {
-              D_RiderID = snapshot.child('riderID').val();
-              D_RiderPickUpName = snapshot.child('riderpickname').val();
-              D_RiderDropUpName = snapshot.child('riderdropname').val();
-            }
-          })
-          .then(
-            () => {
-              if (!D_RiderID == '') {
-                this.setState({ isModal2Visible: true });
-              }
+    // AsyncStorage.getItem('driverId')
+    //   .then(result =>
+    //     firebase
+    //       .database()
+    //       .ref('/Ride_Confirm/' + result)
+    //       .once('value')
+    //       .then(function (snapshot) {
+    //         if (snapshot.exists()) {
+    //           D_RiderID = snapshot.child('riderID').val();
+    //           D_RiderPickUpName = snapshot.child('riderpickname').val();
+    //           D_RiderDropUpName = snapshot.child('riderdropname').val();
+    //         }
+    //       })
+    //       .then(
+    //         () => {
+    //           if (!D_RiderID == '') {
+    //             this.setState({ isModal2Visible: true });
+    //           }
 
-              firebase
-                .database()
-                .ref('/Riders/' + D_RiderID + '/Details')
-                .once('value')
-                .then(function (snapshot) {
-                  DriverHomeContents.D_Firstname = snapshot
-                    .child('firstname')
-                    .val();
-                  DriverHomeContents.D_Lastname = snapshot
-                    .child('lastname')
-                    .val();
-                })
-                .then(
-                  () => {
-                    //console.log("fine"+Firstname);
-                  },
-                  error => {
-                    // console.error("error"+error);
-                    // console.log("the user id:"+userId);
-                  },
-                );
-            },
-            error => {
-              console.error('error' + error);
-              //console.log("the user id:"+userId);
-            },
-          ),
-      )
-      .catch(e => console.log('err', e));
+    //           firebase
+    //             .database()
+    //             .ref('/Riders/' + D_RiderID + '/Details')
+    //             .once('value')
+    //             .then(function (snapshot) {
+    //               DriverHomeContents.D_Firstname = snapshot
+    //                 .child('firstname')
+    //                 .val();
+    //               DriverHomeContents.D_Lastname = snapshot
+    //                 .child('lastname')
+    //                 .val();
+    //             })
+    //             .then(
+    //               () => {
+    //                 //console.log("fine"+Firstname);
+    //               },
+    //               error => {
+    //                 // console.error("error"+error);
+    //                 // console.log("the user id:"+userId);
+    //               },
+    //             );
+    //         },
+    //         error => {
+    //           console.error('error' + error);
+    //           //console.log("the user id:"+userId);
+    //         },
+    //       ),
+    //   )
+    //   .catch(e => console.log('err', e));
   };
 
   _AcceptRequest = () => {
     //alert("accept");
 
     //store rider informations
-    AsyncStorage.getItem('driverId')
-      .then(
-        result =>
-          firebase
-            .database()
-            .ref('/Ride_Request/' + result)
-            .remove(),
-        firebase
-          .database()
-          .ref('/Ride_Request/' + RiderID)
-          .remove(),
-        this.setState({ isModalVisible: false }),
-      )
-      .catch(e => console.log('err', e));
-    AsyncStorage.getItem('driverId')
-      .then(driverID =>
-        //riderId=result,
+    // AsyncStorage.getItem('driverId')
+    //   .then(
+    //     result =>
+    //       firebase
+    //         .database()
+    //         .ref('/Ride_Request/' + result)
+    //         .remove(),
+    //     firebase
+    //       .database()
+    //       .ref('/Ride_Request/' + RiderID)
+    //       .remove(),
+    //     this.setState({ isModalVisible: false }),
+    //   )
+    //   .catch(e => console.log('err', e));
+    // AsyncStorage.getItem('driverId')
+    //   .then(driverID =>
+    //     //riderId=result,
 
-        firebase
-          .database()
-          .ref('Ride_Confirm/' + RiderID)
-          .set({
-            driverID: driverID,
-          })
-          .then(
-            () => {},
-            error => {
-              Toast.show(error.message, Toast.SHORT);
-            },
-          ),
-      )
-      .catch(e => console.log('err', e));
+    //     firebase
+    //       .database()
+    //       .ref('Ride_Confirm/' + RiderID)
+    //       .set({
+    //         driverID: driverID,
+    //       })
+    //       .then(
+    //         () => {},
+    //         error => {
+    //           Toast.show(error.message, Toast.SHORT);
+    //         },
+    //       ),
+    //   )
+    //   .catch(e => console.log('err', e));
 
-    //store driver information
-    AsyncStorage.getItem('driverId')
-      .then(driverID =>
-        //riderId=result,
+    // //store driver information
+    // AsyncStorage.getItem('driverId')
+    //   .then(driverID =>
+    //     //riderId=result,
 
-        firebase
-          .database()
-          .ref('Ride_Confirm/' + driverID + '/')
-          .set({
-            riderID: RiderID,
-            riderpickname: RiderPickUpName,
-            riderdropname: RiderDropUpName,
-            riderpickuplatitude: RiderPickUpLatitude,
-            riderpickuplongitude: RiderPickUpLongitude,
-            riderDropofflatitude: RiderDropUpLatitude,
-            riderdropofflongitude: RiderDropUpLongitude,
-          })
-          .then(
-            () => {
-              this.setState({ isModalVisible: false });
-            },
-            error => {
-              //Toast.show(error.message,Toast.SHORT);
-              console.error('error:' + error);
-            },
-          ),
-      )
-      .catch(e => console.log('err', e));
+    //     firebase
+    //       .database()
+    //       .ref('Ride_Confirm/' + driverID + '/')
+    //       .set({
+    //         riderID: RiderID,
+    //         riderpickname: RiderPickUpName,
+    //         riderdropname: RiderDropUpName,
+    //         riderpickuplatitude: RiderPickUpLatitude,
+    //         riderpickuplongitude: RiderPickUpLongitude,
+    //         riderDropofflatitude: RiderDropUpLatitude,
+    //         riderdropofflongitude: RiderDropUpLongitude,
+    //       })
+    //       .then(
+    //         () => {
+    //           this.setState({ isModalVisible: false });
+    //         },
+    //         error => {
+    //           //Toast.show(error.message,Toast.SHORT);
+    //           console.error('error:' + error);
+    //         },
+    //       ),
+    //   )
+    //   .catch(e => console.log('err', e));
   };
   _DeclineRequest = () => {
     //alert("decline");
 
-    AsyncStorage.getItem('driverId')
-      .then(
-        result =>
-          firebase
-            .database()
-            .ref('/Ride_Request/' + result)
-            .remove(),
-        firebase
-          .database()
-          .ref('/Ride_Request/' + RiderID)
-          .remove(),
-        this.setState({ isModalVisible: false }),
-      )
-      .catch(e => console.log('err', e));
+    // AsyncStorage.getItem('driverId')
+    //   .then(
+    //     result =>
+    //       firebase
+    //         .database()
+    //         .ref('/Ride_Request/' + result)
+    //         .remove(),
+    //     firebase
+    //       .database()
+    //       .ref('/Ride_Request/' + RiderID)
+    //       .remove(),
+    //     this.setState({ isModalVisible: false }),
+    //   )
+    //   .catch(e => console.log('err', e));
   };
 }
 

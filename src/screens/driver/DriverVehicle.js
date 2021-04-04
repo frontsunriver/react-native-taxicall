@@ -25,14 +25,14 @@ export default class DriverVehicle extends React.Component {
     drawerIcon: ({ tintColor }) => (
       <Image
         source={require('../Images/vehicle.png')}
-        style={{ width: 30, height: 30 }}
+        style={{ width: 25, height: 25 }}
       />
     ),
   };
   render() {
     return (
       <Container style={{ flex: 1 }}>
-        <Header style={{ backgroundColor: '#42A5F5', height: 75 }}>
+        <Header style={{ backgroundColor: '#42A5F5', height: 60 }}>
           <Left>
             <TouchableHighlight
               style={{
@@ -41,7 +41,6 @@ export default class DriverVehicle extends React.Component {
                 borderRadius: 50,
                 alignItems: 'center',
                 justifyContent: 'center',
-                marginTop: 20,
               }}
               onPress={() => this.props.navigation.navigate('Home')}
             >
@@ -54,7 +53,6 @@ export default class DriverVehicle extends React.Component {
                 color: '#ffffff',
                 fontSize: 20,
                 fontWeight: 'bold',
-                marginTop: 20,
               }}
             >
               Vehicle Details
