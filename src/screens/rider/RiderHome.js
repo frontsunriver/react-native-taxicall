@@ -8,19 +8,19 @@ import {
   Image,
   YellowBox,
 } from 'react-native';
-import {
-  createDrawerNavigator,
-  DrawerItems,
-  createStackNavigator,
-} from 'react-navigation';
-import RiderHistory from './RiderHistory';
-import RiderSettings from './RiderSettings';
-import RiderPayments from './RiderPayments';
+import { createAppContainer } from 'react-navigation';
+import {createDrawerNavigator, DrawerItems } from 'react-navigation-drawer'
+import {createStackNavigator} from 'react-navigation-stack'
+
 import RiderHomeContents from './RiderHomeContents';
-import RiderNotifications from './RiderNotifications';
-import RiderHelp from './RiderHelp';
 import RiderPickUp from './RiderPickUp';
-import RiderLogout from './RiderLogout';
+import RiderPayments from './RiderPayments';
+// import RiderHistory from './RiderHistory';
+// import RiderSettings from './RiderSettings';
+
+// import RiderNotifications from './RiderNotifications';
+// import RiderHelp from './RiderHelp';
+// import RiderLogout from './RiderLogout';
 
 import {
   Content,
@@ -31,70 +31,70 @@ import {
   Footer,
   Body,
 } from 'native-base';
-import * as firebase from 'firebase';
-import ApiKeys from '../constants/ApiKeys';
+// import * as firebase from 'firebase';
+// import ApiKeys from '../constants/ApiKeys';
 
-export default class RiderHome extends React.Component {
-  static navigationOptions = {
-    header: null,
-  };
+// export default class RiderHome extends React.Component {
+//   static navigationOptions = {
+//     header: null,
+//   };
 
-  constructor(props) {
-    super(props);
+//   constructor(props) {
+//     super(props);
 
-    if (!firebase.apps.length) {
-      firebase.initializeApp(ApiKeys.FirebaseConfig);
-    }
-  }
-  componentDidMount() {
-    /* firebase.database().ref('/Riders/' + firebase.auth().currentUser.uid+'/Details').once('value').then(function(snapshot) {
-     firstname = snapshot.child('firstname').val();
-     lastname = snapshot.child('lastname').val();
+//     // if (!firebase.apps.length) {
+//     //   firebase.initializeApp(ApiKeys.FirebaseConfig);
+//     // }
+//   }
+//   componentDidMount() {
+//     /* firebase.database().ref('/Riders/' + firebase.auth().currentUser.uid+'/Details').once('value').then(function(snapshot) {
+//      firstname = snapshot.child('firstname').val();
+//      lastname = snapshot.child('lastname').val();
 
-   }).then(()=>{
-    console.log("fine");
+//    }).then(()=>{
+//     console.log("fine");
 
-   },(error)=>{
-    console.error("error"+error);
-   });*/
-    //AsyncStorage.clear();
-    AsyncStorage.getItem('riderId')
-      .then(result =>
-        firebase
-          .database()
-          .ref('/Riders/' + result + '/Details')
-          .once('value')
-          .then(function (snapshot) {
-            firstname = snapshot.child('firstname').val();
-            lastname = snapshot.child('lastname').val();
-          })
-          .then(
-            () => {
-              //console.log("fine"+result);
-            },
-            error => {
-              console.error('error' + error);
-              console.log('the user id:' + userId);
-            },
-          ),
-      )
-      .catch(e => console.log('err', e));
+//    },(error)=>{
+//     console.error("error"+error);
+//    });*/
+//     //AsyncStorage.clear();
+//     // AsyncStorage.getItem('riderId')
+//     //   .then(result =>
+//     //     firebase
+//     //       .database()
+//     //       .ref('/Riders/' + result + '/Details')
+//     //       .once('value')
+//     //       .then(function (snapshot) {
+//     //         firstname = snapshot.child('firstname').val();
+//     //         lastname = snapshot.child('lastname').val();
+//     //       })
+//     //       .then(
+//     //         () => {
+//     //           //console.log("fine"+result);
+//     //         },
+//     //         error => {
+//     //           console.error('error' + error);
+//     //           console.log('the user id:' + userId);
+//     //         },
+//     //       ),
+//     //   )
+//     //   .catch(e => console.log('err', e));
 
-    YellowBox.ignoreWarnings(['Encountered an error loading page']);
-    console.disableYellowBox = true;
-  }
-  render() {
-    return (
-      <View style={styles.container}>
-        <MyDrawerNav />
-      </View>
-    );
-  }
-  _signOutAsync = async () => {
-    await AsyncStorage.clear();
-    this.props.navigation.navigate('Auth');
-  };
-}
+//     // YellowBox.ignoreWarnings(['Encountered an error loading page']);
+//     // console.disableYellowBox = true;
+//   }
+//   render() {
+//     return (
+//       <View style={styles.container}>
+//         <MyDrawerNav />
+//       </View>
+//     );
+//   }
+//   _signOutAsync = async () => {
+//     await AsyncStorage.clear();
+//     // this.props.navigation.navigate('Auth');
+//   };
+// }
 const customDrawerContentComponent = props => (
   <Container>
     <Header style={{ height: 200, backgroundColor: '#42A5F5' }}>
@@ -104,7 +104,7 @@ const customDrawerContentComponent = props => (
           style={{ width: 100, height: 100, borderRadius: 100 }}
         />
         <Text style={{ color: '#ffffff', fontWeight: 'bold', fontSize: 20 }}>
-          {this.firstname + ' ' + this.lastname}
+          {/* {this.firstname + ' ' + this.lastname} */}Alex Daniel
         </Text>
       </Body>
     </Header>
@@ -122,6 +122,7 @@ export const MyStackNav = createStackNavigator(
   {
     headerMode: 'none',
     navigationOptions: {
+      header: null,
       headerVisible: false,
     },
   },
@@ -131,11 +132,11 @@ const MyDrawerNav = createDrawerNavigator(
   {
     Home: MyStackNav,
     Payments: RiderPayments,
-    Settings: RiderSettings,
-    History: RiderHistory,
-    Notifications: RiderNotifications,
-    Help: RiderHelp,
-    Logout: RiderLogout,
+    // Settings: RiderSettings,
+    // History: RiderHistory,
+    // Notifications: RiderNotifications,
+    // Help: RiderHelp,
+    // Logout: RiderLogout,
   },
   {
     initialRouteName: 'Home',
@@ -144,13 +145,20 @@ const MyDrawerNav = createDrawerNavigator(
     drawerCloseRoute: 'DrawerClose',
     drawerToggleRoute: 'DrawerToggle',
   },
+  {
+    headerMode: 'none',
+    navigationOptions: {
+      header: null,
+      headerVisible: false,
+    },
+  },
 );
-//
+const AppContainer = createAppContainer(MyDrawerNav);
+export default AppContainer;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
     justifyContent: 'center',
   },
 });

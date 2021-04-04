@@ -24,8 +24,8 @@ import {
 } from 'native-base';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import Toast from 'react-native-simple-toast';
-import * as firebase from 'firebase';
-import ApiKeys from '../constants/ApiKeys';
+// import * as firebase from 'firebase';
+// import ApiKeys from '../constants/ApiKeys';
 const homePlace = {
   description: 'Home',
   geometry: { location: { lat: 48.8152937, lng: 2.4597668 } },
@@ -49,9 +49,9 @@ export default class RiderPickUp extends React.Component {
   //=====================================================================================================================
   constructor(props) {
     super(props);
-    if (!firebase.apps.length) {
-      firebase.initializeApp(ApiKeys.FirebaseConfig);
-    }
+    // if (!firebase.apps.length) {
+    //   firebase.initializeApp(ApiKeys.FirebaseConfig);
+    // }
   }
   render() {
     return (
@@ -179,53 +179,53 @@ export default class RiderPickUp extends React.Component {
           });
   */
     //store rider informations
-    AsyncStorage.getItem('riderId')
-      .then(riderID =>
-        //riderId=result,
+    // AsyncStorage.getItem('riderId')
+    //   .then(riderID =>
+    //     //riderId=result,
 
-        firebase
-          .database()
-          .ref('Ride_Request/' + riderID)
-          .set({
-            driverID: driverID,
-          })
-          .then(
-            () => {
-              Toast.show('driver requested successful', Toast.SHORT);
-            },
-            error => {
-              Toast.show(error.message, Toast.SHORT);
-            },
-          ),
-      )
-      .catch(e => console.log('err', e));
+    //     firebase
+    //       .database()
+    //       .ref('Ride_Request/' + riderID)
+    //       .set({
+    //         driverID: driverID,
+    //       })
+    //       .then(
+    //         () => {
+    //           Toast.show('driver requested successful', Toast.SHORT);
+    //         },
+    //         error => {
+    //           Toast.show(error.message, Toast.SHORT);
+    //         },
+    //       ),
+    //   )
+    //   .catch(e => console.log('err', e));
 
     //store driver information
-    AsyncStorage.getItem('riderId')
-      .then(riderID =>
-        //riderId=result,
+    // AsyncStorage.getItem('riderId')
+    //   .then(riderID =>
+    //     //riderId=result,
 
-        firebase
-          .database()
-          .ref('Ride_Request/' + driverID + '/')
-          .set({
-            riderID: riderID,
-            pickUpName: GooglePlacesInput.pickupName,
-            dropOffName: GooglePlacesDropOff.dropOffName,
-            pickupLatitude: GooglePlacesInput.pickupLatitude,
-            pickupLongitude: GooglePlacesInput.pickupLongitude,
-            dropOffLatitude: GooglePlacesDropOff.dropOffLatitude,
-            dropOffLongitude: GooglePlacesDropOff.dropOffLongitude,
-          })
-          .then(
-            () => {},
-            error => {
-              //Toast.show(error.message,Toast.SHORT);
-              console.error('error:' + error);
-            },
-          ),
-      )
-      .catch(e => console.log('err', e));
+    //     firebase
+    //       .database()
+    //       .ref('Ride_Request/' + driverID + '/')
+    //       .set({
+    //         riderID: riderID,
+    //         pickUpName: GooglePlacesInput.pickupName,
+    //         dropOffName: GooglePlacesDropOff.dropOffName,
+    //         pickupLatitude: GooglePlacesInput.pickupLatitude,
+    //         pickupLongitude: GooglePlacesInput.pickupLongitude,
+    //         dropOffLatitude: GooglePlacesDropOff.dropOffLatitude,
+    //         dropOffLongitude: GooglePlacesDropOff.dropOffLongitude,
+    //       })
+    //       .then(
+    //         () => {},
+    //         error => {
+    //           //Toast.show(error.message,Toast.SHORT);
+    //           console.error('error:' + error);
+    //         },
+    //       ),
+    //   )
+    //   .catch(e => console.log('err', e));
   };
 }
 

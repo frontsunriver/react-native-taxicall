@@ -8,6 +8,7 @@ import AuthLoadingScreen from "./src/screens/AuthLoading/AuthLoadingScreen";
 import RiderRegLog from './src/screens/rider/RiderRegLog';
 import RiderRegister from './src/screens/rider/RiderRegister';
 import RiderLogin from './src/screens/rider/RiderLogin';
+import RiderHome from './src/screens/rider/RiderHome';
 // import RiderVerifyNumber from './src/screens/rider/RiderVerifyNumber';
 // import RiderForgotPassword from './src/screens/rider/RiderForgotPassword'
 import DriverRegLog from "./src/screens/driver/DriverRegLog";
@@ -36,12 +37,18 @@ const AuthStack = createStackNavigator({
 	DriverReg: DriverRegister
 });
 
-// const AuthStackRider = createStackNavigator({ Rider: RiderHome });
+const AuthStackRider = createStackNavigator({ Rider: RiderHome }, {
+    headerMode: 'none',
+    navigationOptions: {
+      header: null,
+      headerVisible: false,
+    },
+  },);
 // const AuthStackDriver = createStackNavigator({ Driver: DriverHome });
 const switchNavigator = createSwitchNavigator(
 	{
 		AuthLoading: AuthLoadingScreen,
-		// App1: AuthStackRider,
+		App1: AuthStackRider,
 		// App2: AuthStackDriver,
 		Auth: AuthStack
 	},

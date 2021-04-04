@@ -26,9 +26,9 @@ import {
 } from 'native-base';
 
 import MapView, { PROVIDER_GOOGLE, AnimatedRegion } from 'react-native-maps';
-import GooglePlacesInput from './RiderPlaceSearch';
-import * as firebase from 'firebase';
-import ApiKeys from '../constants/ApiKeys';
+// import GooglePlacesInput from './RiderPlaceSearch';
+// import * as firebase from 'firebase';
+// import ApiKeys from '../constants/ApiKeys';
 
 //-----------------------------------------------------------------------------------//
 /*
@@ -62,12 +62,13 @@ export default class RiderHomeContents extends React.Component {
       isConfirmButton: false,
       isMounted: false,
     };
-    if (!firebase.apps.length) {
-      firebase.initializeApp(ApiKeys.FirebaseConfig);
-    }
+    // if (!firebase.apps.length) {
+    //   firebase.initializeApp(ApiKeys.FirebaseConfig);
+    // }
   }
   //------------NAVIGATION OPTION--------------------//
   static navigationOptions = {
+    header: null,
     drawerIcon: ({ tintColor }) => (
       <Image
         source={require('../Images/home.png')}
@@ -139,7 +140,7 @@ export default class RiderHomeContents extends React.Component {
   componentWillUnmount() {
     //  this.isMounted = false;
     //  if(!this.state.isMounted){
-    navigator.geolocation.clearWatch(this.watchID);
+    // navigator.geolocation.clearWatch(this.watchID);
     //  }
   }
   //------------RENDER FUNCTION--------------------//
@@ -147,7 +148,7 @@ export default class RiderHomeContents extends React.Component {
   render() {
     return (
       <Container>
-        <Header style={{ backgroundColor: '#42A5F5', height: 75 }}>
+        <Header style={{ backgroundColor: '#42A5F5', height: 50 }}>
           <Left>
             <TouchableHighlight
               style={{
@@ -156,7 +157,6 @@ export default class RiderHomeContents extends React.Component {
                 borderRadius: 50,
                 alignItems: 'center',
                 justifyContent: 'center',
-                marginTop: 20,
               }}
               onPress={() => this.props.navigation.toggleDrawer()}
             >
@@ -169,10 +169,9 @@ export default class RiderHomeContents extends React.Component {
                 color: '#ffffff',
                 fontSize: 20,
                 fontWeight: 'bold',
-                marginTop: 20,
               }}
             >
-              Taxi App
+              Taxi Rider
             </Text>
           </Body>
         </Header>
@@ -280,7 +279,15 @@ export default class RiderHomeContents extends React.Component {
           </Card>
         </Content>
         <Footer style={styles.footer}>
-          {this.state.isConfirmButton ? (
+          <TouchableOpacity
+              style={styles.DoneButton}
+              onPress={() => this.props.navigation.navigate('pickUpLocation')}
+            >
+              <Text style={{ color: '#ffffff', fontWeight: 'bold' }}>
+                CONFIRM
+              </Text>
+            </TouchableOpacity>
+          {/* {this.state.isConfirmButton ? (
             <TouchableOpacity
               style={styles.DoneButton}
               onPress={() => this.props.navigation.navigate('pickUpLocation')}
@@ -289,8 +296,8 @@ export default class RiderHomeContents extends React.Component {
                 CONFIRM
               </Text>
             </TouchableOpacity>
-          ) : null}
-          {!this.state.isModalVisible ? (
+          ) : null} */}
+          {/* {!this.state.isModalVisible ? (
             <View
               style={{
                 width: 300,
@@ -318,7 +325,7 @@ export default class RiderHomeContents extends React.Component {
                 Accepted
               </Text>
             </View>
-          ) : null}
+          ) : null} */}
         </Footer>
       </Container>
     );
@@ -328,64 +335,64 @@ export default class RiderHomeContents extends React.Component {
     //alert(this.state.region.latitude);
   };
   _getDriverRequestDetails = async () => {
-    AsyncStorage.getItem('riderId')
-      .then(result =>
-        firebase
-          .database()
-          .ref('/Ride_Request/' + result)
-          .once('value')
-          .then(function (snapshot) {
-            if (snapshot.exists()) {
-              DriverID = snapshot.child('driverID').val();
-            }
-          })
-          .then(
-            () => {
-              if (!DriverID == '') {
-                this.setState({ isModalVisible: true });
-              }
+    // AsyncStorage.getItem('riderId')
+    //   .then(result =>
+    //     firebase
+    //       .database()
+    //       .ref('/Ride_Request/' + result)
+    //       .once('value')
+    //       .then(function (snapshot) {
+    //         if (snapshot.exists()) {
+    //           DriverID = snapshot.child('driverID').val();
+    //         }
+    //       })
+    //       .then(
+    //         () => {
+    //           if (!DriverID == '') {
+    //             this.setState({ isModalVisible: true });
+    //           }
 
-              firebase
-                .database()
-                .ref('/Drivers/' + DriverID + '/Details')
-                .once('value')
-                .then(function (snapshot) {
-                  RiderHomeContents.Firstname = snapshot
-                    .child('firstname')
-                    .val();
-                  RiderHomeContents.Lastname = snapshot.child('lastname').val();
-                })
-                .then(
-                  () => {
-                    console.log('firstname' + RiderHomeContents.Firstname);
-                  },
-                  error => {
-                    // console.error("error"+error);
-                    // console.log("the user id:"+userId);
-                  },
-                );
-            },
-            error => {
-              console.error('error' + error);
-              //console.log("the user id:"+userId);
-            },
-          ),
-      )
-      .catch(e => console.log('err', e));
+    //           firebase
+    //             .database()
+    //             .ref('/Drivers/' + DriverID + '/Details')
+    //             .once('value')
+    //             .then(function (snapshot) {
+    //               RiderHomeContents.Firstname = snapshot
+    //                 .child('firstname')
+    //                 .val();
+    //               RiderHomeContents.Lastname = snapshot.child('lastname').val();
+    //             })
+    //             .then(
+    //               () => {
+    //                 console.log('firstname' + RiderHomeContents.Firstname);
+    //               },
+    //               error => {
+    //                 // console.error("error"+error);
+    //                 // console.log("the user id:"+userId);
+    //               },
+    //             );
+    //         },
+    //         error => {
+    //           console.error('error' + error);
+    //           //console.log("the user id:"+userId);
+    //         },
+    //       ),
+    //   )
+    //   .catch(e => console.log('err', e));
 
-    firebase
-      .database()
-      .ref('/Ride_confirm/' + result)
-      .once('value')
-      .then(function (snapshot) {
-        if (snapshot.exists()) {
-          this.setState({ isModalVisible: true });
-        }
-      })
-      .then(() => {
-        console.log('');
-      })
-      .catch(e => console.log('err', e));
+    // firebase
+    //   .database()
+    //   .ref('/Ride_confirm/' + result)
+    //   .once('value')
+    //   .then(function (snapshot) {
+    //     if (snapshot.exists()) {
+    //       this.setState({ isModalVisible: true });
+    //     }
+    //   })
+    //   .then(() => {
+    //     console.log('');
+    //   })
+    //   .catch(e => console.log('err', e));
   };
 
   storeUserLocation() {
@@ -393,32 +400,32 @@ export default class RiderHomeContents extends React.Component {
     //var userLongitude=this.state.region.longitude;
     //if(userLatitude>0 && userLongitude>0){
 
-    RiderID = firebase.auth().currentUser.uid;
-    if (RiderID) {
-      firebase
-        .database()
-        .ref(`Riders/${RiderID}/RiderCurrentLocation/`)
-        .set({
-          latitude: this.state.region.latitude,
-          longitude: this.state.region.longitude,
-        })
-        .then(
-          () => {
-            //firebase.database().ref(`Payments/${RiderID}/PaymentsHistory`);
-            //Toast.show("payments updated successfully",Toast.SHORT);
-            console.log(
-              'latitude:' +
-                this.state.region.latitude +
-                '   longitude:' +
-                this.state.region.latitude,
-            );
-          },
-          error => {
-            //Toast.show(error.message,Toast.SHORT);
-            console.log('error with location:' + error);
-          },
-        );
-    }
+    // RiderID = firebase.auth().currentUser.uid;
+    // if (RiderID) {
+    //   firebase
+    //     .database()
+    //     .ref(`Riders/${RiderID}/RiderCurrentLocation/`)
+    //     .set({
+    //       latitude: this.state.region.latitude,
+    //       longitude: this.state.region.longitude,
+    //     })
+    //     .then(
+    //       () => {
+    //         //firebase.database().ref(`Payments/${RiderID}/PaymentsHistory`);
+    //         //Toast.show("payments updated successfully",Toast.SHORT);
+    //         console.log(
+    //           'latitude:' +
+    //             this.state.region.latitude +
+    //             '   longitude:' +
+    //             this.state.region.latitude,
+    //         );
+    //       },
+    //       error => {
+    //         //Toast.show(error.message,Toast.SHORT);
+    //         console.log('error with location:' + error);
+    //       },
+    //     );
+    // }
 
     // }
   }
@@ -428,21 +435,22 @@ export default class RiderHomeContents extends React.Component {
 const styles = StyleSheet.create({
   containerView: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#42A5F1',
   },
   footer: {
     backgroundColor: '#ffffff',
-    height: 80,
+    height: 50,
+    paddingBottom: 10
   },
   map: {
-    height: 490,
+    height: 610,
     marginTop: 0,
   },
   searchBoxView: {
     flexDirection: 'row',
     backgroundColor: 'white',
     width: 320,
-    minHeight: 50,
+    minHeight: 45,
     position: 'absolute',
     top: 10,
     left: 20,
@@ -452,7 +460,7 @@ const styles = StyleSheet.create({
   searchIcon: {
     color: '#42A5F5',
     marginTop: 12,
-    marginLeft: 10,
+    marginLeft: 20,
   },
   DropUpLocation: {
     alignSelf: 'stretch',
@@ -473,9 +481,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#42A5F1',
-    height: 50,
+    height: 40,
     width: 350,
-    marginTop: 5,
     marginLeft: 3,
   },
 });

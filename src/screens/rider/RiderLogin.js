@@ -166,6 +166,7 @@ export default class RiderLogin extends React.Component {
     //       this.setState({ color: '#ffffff' });
     //     },
     //   );
+    this.props.navigation.navigate('App1');
   };
 
   /*---------------------------------------------------------------------------------------- */

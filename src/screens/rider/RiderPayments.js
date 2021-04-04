@@ -23,8 +23,8 @@ import {
 } from 'native-base';
 import CheckBox from 'react-native-check-box';
 import Toast from 'react-native-simple-toast';
-import * as firebase from 'firebase';
-import ApiKeys from '../constants/ApiKeys';
+// import * as firebase from 'firebase';
+// import ApiKeys from '../constants/ApiKeys';
 export default class RiderPayments extends React.Component {
   static navigationOptions = {
     drawerIcon: ({ tintColor }) => (
@@ -42,9 +42,9 @@ export default class RiderPayments extends React.Component {
       Bitcoin: false,
       Paypal: false,
     };
-    if (!firebase.apps.length) {
-      firebase.initializeApp(ApiKeys.FirebaseConfig);
-    }
+    // if (!firebase.apps.length) {
+    //   firebase.initializeApp(ApiKeys.FirebaseConfig);
+    // }
   }
   render() {
     return (
@@ -274,27 +274,27 @@ export default class RiderPayments extends React.Component {
 
   //addPayments to the database
   _addPaymentsToRiderDatabase = async () => {
-    AsyncStorage.getItem('riderId')
-      .then(riderID =>
-        firebase
-          .database()
-          .ref(`Payments/${riderID}/PaymentsMode/`)
-          .set({
-            MobileMoney: this.state.MobileMoney,
-            Cash: this.state.Cash,
-            Bitcoin: this.state.Bitcoin,
-          })
-          .then(
-            () => {
-              //firebase.database().ref(`Payments/${RiderID}/PaymentsHistory`);
-              Toast.show('payments updated successfully', Toast.SHORT);
-            },
-            error => {
-              Toast.show(error.message, Toast.SHORT);
-            },
-          ),
-      )
-      .catch(e => console.log('err', e));
+    // AsyncStorage.getItem('riderId')
+    //   .then(riderID =>
+    //     firebase
+    //       .database()
+    //       .ref(`Payments/${riderID}/PaymentsMode/`)
+    //       .set({
+    //         MobileMoney: this.state.MobileMoney,
+    //         Cash: this.state.Cash,
+    //         Bitcoin: this.state.Bitcoin,
+    //       })
+    //       .then(
+    //         () => {
+    //           //firebase.database().ref(`Payments/${RiderID}/PaymentsHistory`);
+    //           Toast.show('payments updated successfully', Toast.SHORT);
+    //         },
+    //         error => {
+    //           Toast.show(error.message, Toast.SHORT);
+    //         },
+    //       ),
+    //   )
+    //   .catch(e => console.log('err', e));
   };
 }
 
