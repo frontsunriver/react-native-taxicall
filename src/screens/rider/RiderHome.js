@@ -15,12 +15,11 @@ import {createStackNavigator} from 'react-navigation-stack'
 import RiderHomeContents from './RiderHomeContents';
 import RiderPickUp from './RiderPickUp';
 import RiderPayments from './RiderPayments';
-// import RiderHistory from './RiderHistory';
-// import RiderSettings from './RiderSettings';
-
-// import RiderNotifications from './RiderNotifications';
-// import RiderHelp from './RiderHelp';
-// import RiderLogout from './RiderLogout';
+import RiderSettings from './RiderSettings';
+import RiderHistory from './RiderHistory';
+import RiderNotifications from './RiderNotifications';
+import RiderHelp from './RiderHelp';
+import RiderLogout from './RiderLogout';
 
 import {
   Content,
@@ -132,11 +131,11 @@ const MyDrawerNav = createDrawerNavigator(
   {
     Home: MyStackNav,
     Payments: RiderPayments,
-    // Settings: RiderSettings,
-    // History: RiderHistory,
-    // Notifications: RiderNotifications,
-    // Help: RiderHelp,
-    // Logout: RiderLogout,
+    Settings: RiderSettings,
+    History: RiderHistory,
+    Notifications: RiderNotifications,
+    Help: RiderHelp,
+    Logout: RiderLogout,
   },
   {
     initialRouteName: 'Home',

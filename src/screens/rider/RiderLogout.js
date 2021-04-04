@@ -8,11 +8,12 @@ import {
   Image,
 } from 'react-native';
 import RNRestart from 'react-native-restart';
+import * as Updates from 'expo-updates';
 
 // Immediately reload the React Native Bundle
 
 import { NavigationActions } from 'react-navigation';
-import AuthLoadingScreen from '../main/AuthLoadingScreen';
+import AuthLoadingScreen from '../AuthLoading/AuthLoadingScreen';
 
 export default class RiderLogout extends React.Component {
   constructor(props) {
@@ -32,7 +33,7 @@ export default class RiderLogout extends React.Component {
 
   componentDidMount() {
     AsyncStorage.clear();
-    Expo.Util.reload();
+    Updates.reloadAsync()
   }
   // Fetch the token from storage then navigate to our appropriate place
 

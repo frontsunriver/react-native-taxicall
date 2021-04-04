@@ -68,7 +68,6 @@ export default class RiderHomeContents extends React.Component {
   }
   //------------NAVIGATION OPTION--------------------//
   static navigationOptions = {
-    header: null,
     drawerIcon: ({ tintColor }) => (
       <Image
         source={require('../Images/home.png')}
@@ -148,7 +147,7 @@ export default class RiderHomeContents extends React.Component {
   render() {
     return (
       <Container>
-        <Header style={{ backgroundColor: '#42A5F5', height: 50 }}>
+        <Header style={{ backgroundColor: '#42A5F5', height: 60 }}>
           <Left>
             <TouchableHighlight
               style={{
