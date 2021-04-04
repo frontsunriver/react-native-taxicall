@@ -75,19 +75,55 @@ class DriverHome extends React.Component {
 //
 export const MyBottomTabNavigator = createMaterialBottomTabNavigator(
 	{
-		Home: { screen: DriverHomeContents },
-		Vehicle: { screen: DriverVehicle },
-		Settings: { screen: DriverSettings },
-		Ratings: { screen: DriverRatings },
-		Earnings: { screen: DriverEarnings },
-		Licence: { screen: DriverLicence }
+		Home: { screen: DriverHomeContents, navigationOptions:{  
+			tabBarLabel:'Home',  
+			tabBarIcon: ({ tintColor }) => (  
+				<View>  
+					<Image style={{width: 25, height:25}} source={require('../Images/home.png')}></Image> 
+				</View>),  
+		}},
+		Vehicle: { screen: DriverVehicle, navigationOptions:{  
+			tabBarLabel:'Vehicle',  
+			tabBarIcon: ({ tintColor }) => (  
+				<View>  
+					<Image style={{width: 25, height:25}} source={require('../Images/vehicle.png')}></Image> 
+				</View>),  
+		}},
+		Settings: { screen: DriverSettings, navigationOptions:{  
+			tabBarLabel:'Settings',  
+			tabBarIcon: ({ tintColor }) => (  
+				<View>  
+					<Image style={{width: 25, height:25}} source={require('../Images/settings.png')}></Image> 
+				</View>),  
+		}},
+		Ratings: { screen: DriverRatings, navigationOptions:{  
+			tabBarLabel:'Ratings',  
+			tabBarIcon: ({ tintColor }) => (  
+				<View>  
+					<Image style={{width: 25, height:25}} source={require('../Images/ratings.png')}></Image> 
+				</View>),  
+		}},
+		Earnings: { screen: DriverEarnings, navigationOptions:{  
+			tabBarLabel:'Earnings',  
+			tabBarIcon: ({ tintColor }) => (  
+				<View>  
+					<Image style={{width: 25, height:25}} source={require('../Images/earnings.png')}></Image> 
+				</View>),  
+		}},
+		Licence: { screen: DriverLicence, navigationOptions:{  
+			tabBarLabel:'Licence',  
+			tabBarIcon: ({ tintColor }) => (  
+				<View>  
+					<Image style={{width: 25, height:25}} source={require('../Images/licence.png')}></Image> 
+				</View>),  
+		}}
 		// Logout:RiderDriverScreenChoice
 	},
 	{
 		initialRouteName: 'Home',
 		activeTintColor: '#42A5F5',
 		inactiveTintColor: '#ffffff',
-		barStyle: { backgroundColor: '#ddd' }
+		barStyle: { backgroundColor: '#fff' }
 	}
 );
 
@@ -109,7 +145,7 @@ const customDrawerContentComponent = (props) => (
 //drawerNavigator
 const MyDrawerNav = createDrawerNavigator(
 	{
-		Home: DriverHomeContents,
+		Home: MyBottomTabNavigator,
 		Earnings: DriverEarnings,
 		Settings: DriverSettings,
 		Ratings: DriverRatings,
